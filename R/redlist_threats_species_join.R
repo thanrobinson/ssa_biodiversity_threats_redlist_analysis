@@ -1,16 +1,15 @@
-# Require Red List API Package, must be installed before hand
+# Require Red List API Package, must be installed before running this script
 require(rredlist)
 
-
 # Set Working Directory - these should be modified based on Source File location
-setwd("~/Documents/TNC/projects/Constultancies/OldWork/ssaBiodiversityThreats")
+
 dataDir = "Data/"
 
 # REDLIST API Token - Used in Functinos that Call RedList API
 #### Note: in order to use this script a user must obtain a unique Token 
 #### from the IUCN. Paste the token below as the KEY variable, and the script
 #### will run.
-
+key = Sys.getenv('redlistKey')
 
 # Get Citation for IUCN Red List API
 rl_citation(key=key)
