@@ -204,7 +204,6 @@ east <- outputs[[3]]
 southern <- outputs[[4]]
 ssa <- outputs[[5]]
 
-
 ssa$ssa <- rank(-ssa$Count, ties.method = "min")
 ssa <- ssa[c(1, 3)]
 
