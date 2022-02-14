@@ -161,11 +161,6 @@ for (j in 1:5) {
   # Change the Column Name
   colnames(ssaSp) <- 'spScName'
   
-  # # Writes SSA IUCN Subset to CSV file in the Data Directory
-  # write.csv(ssaSp,
-  #           file = paste("outputs/", name, "_IUCN_Maxwell_Species.csv",  sep = ''))
-  
-  
   # Merge Maxwell Raw Data and SSA Species -
   # Result is Maxwell Data subset by Species in SSA
   ssaData <-
@@ -177,24 +172,32 @@ for (j in 1:5) {
       all = FALSE,
       incomparables = NULL
     )
+
+  species_included <- as.data.frame(unique(ssaData$friendly_name))
+  colnames(species_included) <- 'Species'
   
-  # Get Number of Unique SSA Species in Maxwell Dataset
-  length(unique(ssaData$friendly_name))
-  
+  # # Writes SSA IUCN Subset to CSV file in the Data Directory
+  write.csv(species_included,
+            file = paste("outputs/", name, "_IUCN_Maxwell_Species.csv",  sep = ''))
+
+
   # Convert Threats Into Factor Variable
   ssaData$title <- as.factor(ssaData$title)
   
   # Count the Frequency of Each Threat
   threats <- as.data.frame(table(ssaData$title))
-  
+ 
   # Change Column Names
   colnames(threats) <- c('Threat', 'Count')
+  threats$Rank <- rank(-threats$Count, ties.method = "min")
   
   # Order the Data By Threat Frequecy
   ssaThreats <- threats[order(-threats$Count), ]
   
-  write.csv(ssaThreats, file = paste('outputs/', name , '_threat_species_counts.csv', sep =
+  write.csv(ssaThreats, file = paste('outputs/', name , '_Threats.csv', sep =
   ""))
+  
+  colnames(ssaThreats) <- c('Threat', paste(name, "_count", sep=""), paste(name, "_rank", sep=""))
   outputs[[j]] <- ssaThreats
 }
 
@@ -203,29 +206,29 @@ central <- outputs[[2]]
 east <- outputs[[3]]
 southern <- outputs[[4]]
 ssa <- outputs[[5]]
-
-ssa$ssa <- rank(-ssa$Count, ties.method = "min")
-ssa <- ssa[c(1, 3)]
-
-
-west$west <- rank(-west$Count, ties.method = "min")
-west <- west[c(1, 3)]
-
-east$east <- rank(-east$Count, ties.method = "min")
-east <- east[c(1, 3)]
-
-central$central <- rank(-central$Count, ties.method = "min")
-central <- central[c(1, 3)]
-
-southern$southern <- rank(-southern$Count, ties.method = "min")
-southern <- southern[c(1, 3)]
+head(ssa)
+# ssa$ssa <- rank(-ssa$Count, ties.method = "min")
+# ssa <- ssa[c(1, 3)]
+# 
+# 
+# west$west <- rank(-west$Count, ties.method = "min")
+# west <- west[c(1, 3)]
+# 
+# east$east <- rank(-east$Count, ties.method = "min")
+# east <- east[c(1, 3)]
+# 
+# central$central <- rank(-central$Count, ties.method = "min")
+# central <- central[c(1, 3)]
+# 
+# southern$southern <- rank(-southern$Count, ties.method = "min")
+# southern <- southern[c(1, 3)]
 
 ssaThreats <- merge(ssa, west, by = c("Threat"), all = T)
 ssaThreats <- merge(ssaThreats, east, by = c("Threat"), all = T)
 ssaThreats <- merge(ssaThreats, central, by = c("Threat"), all = T)
 ssaThreats <- merge(ssaThreats, southern, by = c("Threat"), all = T)
 
-
-ssaThreats <- ssaThreats[order(ssaThreats$ssa),]
+head(ssaThreats)
+ssaThreats <- ssaThreats[order(-ssaThreats$SSA_count),]
 write.csv(ssaThreats,
-          paste("outputs/", "ssa_ranked_threats.csv", sep = ""))
+          paste("outputs/", "SSA_Ranked_Threats.csv", sep = ""))
