@@ -20,7 +20,7 @@ rl_citation(key = key)
 citation(package = 'rredlist')
 
 # Read In Maxwell et al 2016 Raw Data
-threats <- read.csv(paste(input_directory,
+maxwell_threats <- read.csv(paste(input_directory,
                           "Maxwell_et_al_2016 raw_data.csv",
                           sep = ""))
 
@@ -161,18 +161,16 @@ for (j in 1:5) {
   # Change the Column Name
   colnames(ssaSp) <- 'spScName'
   
-  # Writes SSA IUCN Subset to CSV file in the Data Directory
-  write.csv(ssaSp,
-            file = paste("outputs/", name, "_IUCNspecies_SSA.csv",  sep = ''))
+  # # Writes SSA IUCN Subset to CSV file in the Data Directory
+  # write.csv(ssaSp,
+  #           file = paste("outputs/", name, "_IUCN_Maxwell_Species.csv",  sep = ''))
   
-  # Get Number of Unique SSA Species
-  length(ssaSp$spScName)
   
   # Merge Maxwell Raw Data and SSA Species -
   # Result is Maxwell Data subset by Species in SSA
   ssaData <-
     merge(
-      threats,
+      maxwell_threats,
       ssaSp,
       by.x = 'friendly_name',
       by.y = 'spScName',
@@ -193,10 +191,10 @@ for (j in 1:5) {
   colnames(threats) <- c('Threat', 'Count')
   
   # Order the Data By Threat Frequecy
-  ssaThreats <- threats[order(-threats$Count),]
+  ssaThreats <- threats[order(-threats$Count), ]
   
-  write.csv(ssaThreats, file = paste('outputs/', name , '-threats.csv', sep =
-                                       ""))
+  write.csv(ssaThreats, file = paste('outputs/', name , '_threat_species_counts.csv', sep =
+  ""))
   outputs[[j]] <- ssaThreats
 }
 
@@ -229,7 +227,6 @@ ssaThreats <- merge(ssaThreats, central, by = c("Threat"), all = T)
 ssaThreats <- merge(ssaThreats, southern, by = c("Threat"), all = T)
 
 
-ssaThreats <- ssaThreats[order(ssaThreats$ssa), ]
-write.csv(
-  ssaThreats,
-  paste("outputs/", "ssa_ranked_threats.csv", sep="")
+ssaThreats <- ssaThreats[order(ssaThreats$ssa),]
+write.csv(ssaThreats,
+          paste("outputs/", "ssa_ranked_threats.csv", sep = ""))

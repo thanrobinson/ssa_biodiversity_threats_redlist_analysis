@@ -1,0 +1,41 @@
+"","Threat","ssa","west","east","central","southern"
+"3","Annual & perennial non-timber crops",1,2,3,1,5
+"11","Fishing & harvesting aquatic resources",2,1,1,3,1
+"16","Housing & urban areas",3,5,2,6,3
+"21","Logging & wood harvesting",4,3,6,2,22
+"19","Invasive non-native/alien species",5,10,4,9,2
+"1","Agricultural & forestry effluents",6,7,5,7,6
+"18","Industrial & military effluents",7,9,8,14,11
+"7","Domestic & urban waste water",8,12,10,20,12
+"29","Recreational activities",9,13,7,13,8
+"17","Hunting & trapping terrestrial animals",10,4,16,4,4
+"35","Tourism & recreation areas",11,18,9,24,7
+"5","Commercial & industrial areas",12,23,11,27,10
+"20","Livestock farming & ranching",13,6,17,5,9
+"34","Temperature extremes",14,30,12,28,13
+"33","Storms & flooding",15,32,13,31,14
+"32","Shipping lanes",16,28,13,29,15
+"2","Air-borne pollutants",17,35,15,37,17
+"10","Fire & fire suppression",18,22,18,10,18
+"15","Habitat shifting & alteration",19,17,19,8,19
+"39","Wood & pulp plantations",20,20,20,20,16
+"23","Mining & quarrying",21,8,22,12,23
+"14","Gathering terrestrial plants",22,30,23,20,19
+"6","Dams & water management/use",23,11,21,11,19
+"28","Problematic native species",24,15,25,17,24
+"38","War Civil Unrest & Military Exercises",25,14,27,18,29
+"40","Work & other activities",25,15,24,15,25
+"8","Droughts",27,19,26,18,30
+"31","Roads & railroads",28,25,29,15,26
+"25","Other ecosystem modifications",29,23,28,23,27
+"36","Utility & service lines",30,25,30,25,28
+"24","Oil & gas drilling",31,20,31,25,32
+"30","Renewable energy",32,27,32,30,30
+"13","Garbage & solid waste",33,28,34,32,34
+"22","Marine & freshwater aquaculture",34,32,33,32,33
+"26","Other impacts",35,NA,34,35,35
+"9","Excess energy",36,34,34,35,36
+"37","Volcanoes",36,NA,37,34,37
+"4","Avalanches/landslides",38,NA,NA,NA,37
+"12","Flight paths",38,35,37,37,37
+"27","Other threat",38,NA,37,NA,NA
